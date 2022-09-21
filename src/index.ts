@@ -1,4 +1,4 @@
-import { ChainList } from "./ChainList.js";
+import { ChainList } from "./ChainList";
 
 // Connect wallet
 const useConnectWallet = async () => {
