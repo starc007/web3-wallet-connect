@@ -2,10 +2,11 @@
   "name": "web3-wallet-connect",
   "version": "1.0.0",
   "description": "A simple package to connect your wallet to dapp",
-  "main": "index.js",
+  "main": "lib/index.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc",
+    "prepare": "npm run build"
   },
   "repository": {
     "type": "git",
@@ -23,5 +24,8 @@
   "homepage": "https://github.com/starc007/web3-wallet-connect#readme",
   "devDependencies": {
     "typescript": "^4.8.3"
-  }
+  },
+  "files": [
+    "lib/**/*"
+  ]
 }
