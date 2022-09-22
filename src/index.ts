@@ -27,7 +27,7 @@ const useConnectWallet = async () => {
   }
 };
 
-// Switch network
+// Switch Network if chain is not in metamask then add it
 const useSwitchNetwork = async (chainId: number) => {
   if (!(window as any).ethereum) {
     return {
@@ -48,6 +48,10 @@ const useSwitchNetwork = async (chainId: number) => {
       method: "wallet_addEthereumChain",
       params: [ChainList[chainId]],
     });
+    return {
+      message: "Network switched",
+      success: true,
+    };
   } catch (error: any) {
     return {
       message: error.message,
@@ -56,23 +60,17 @@ const useSwitchNetwork = async (chainId: number) => {
   }
 };
 
-// On Change Network
-const onNetworkChange = async (chain: number) => {
-  // check if netowrk is changed
-  let chainId = await (window as any).ethereum.request({
-    method: "eth_chainId",
-  });
-  chainId = parseInt(chainId, 16);
-  if (chainId == chain) {
-    return {
-      message: "Network not changed",
-      success: false,
-    };
-  }
-  return {
-    message: "Network changed",
-    success: true,
-  };
+// Stay on Specific Network if network changes
+const useNetworkChange = async (chainId: number) => {
+  (window as any).ethereum.on(
+    "chainChanged",
+    async (currentChainId: string) => {
+      if (parseInt(currentChainId, 16) !== chainId) {
+        console.log("Network changed");
+        await useSwitchNetwork(chainId);
+      }
+    }
+  );
 };
 
-export { useConnectWallet, useSwitchNetwork, onNetworkChange };
+export { useConnectWallet, useSwitchNetwork, useNetworkChange };

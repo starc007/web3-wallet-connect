@@ -94,4 +94,15 @@ export const ChainList: ChainListType = {
     rpcUrls: ["https://bsc-dataseed2.binance.org"],
     blockExplorerUrls: ["https://bscscan.com/"],
   },
+  97: {
+    chainId: "0x61",
+    chainName: "BSC Testnet",
+    nativeCurrency: {
+      name: "Binance Coin",
+      symbol: "BNB",
+      decimals: 18,
+    },
+    rpcUrls: ["https://data-seed-prebsc-1-s1.binance.org:8545/"],
+    blockExplorerUrls: ["https://testnet.bscscan.com/"],
+  },
 };
