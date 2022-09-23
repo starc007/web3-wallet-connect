@@ -60,17 +60,26 @@ const useSwitchNetwork = async (chainId: number) => {
   }
 };
 
-// Stay on Specific Network if network changes
-const useNetworkChange = async (chainId: number) => {
+// track if chain changes
+const useNetworkChange = async (cb: any) => {
   (window as any).ethereum.on(
     "chainChanged",
     async (currentChainId: string) => {
-      if (parseInt(currentChainId, 16) !== chainId) {
-        console.log("Network changed");
-        await useSwitchNetwork(chainId);
-      }
+      cb(currentChainId);
     }
   );
 };
 
-export { useConnectWallet, useSwitchNetwork, useNetworkChange };
+// track if account changes
+const useAccountChange = async (cb: any) => {
+  (window as any).ethereum.on("accountsChanged", async (accounts: any) => {
+    cb(accounts[0]);
+  });
+};
+
+export {
+  useConnectWallet,
+  useSwitchNetwork,
+  useNetworkChange,
+  useAccountChange,
+};
