@@ -21,7 +21,7 @@ Install web3-wallet connect with npm
 ```jsx
 import { useConnectWallet } from "web3-wallet-connect";
 
-const { address, success, message } = useConnectWallet();
+const { address, success, message } = await useConnectWallet();
 ```
 
 ### Switch Network
@@ -33,7 +33,7 @@ import { useSwitchNetwork } from "web3-wallet-connect";
 
 # if you want to switch to polygon mainnet just pass chainId of polygon mainnet
 
-const { success,message } = useSwitchNetwork(137);
+const { success,message } = await useSwitchNetwork(137);
 ```
 
 ### Network Change
@@ -46,7 +46,7 @@ import { useNetworkChange } from "web3-wallet-connect";
 # Tracks the network change
 
 const cb = (chainId)=> {
-    console.log(parseInt(chainId,16));
+    console.log(parseInt(chainId));
 }
 
 useNetworkChange(cb);
