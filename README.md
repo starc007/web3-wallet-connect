@@ -89,6 +89,10 @@ Following Chains are Supported for now:-
     Mainnet
     Binance Testnet
 
+## Supported Wallet
+
+    Metamask
+
 ## 🍰 Contributing
 
 Before Contributing please read [Contribute](Contribute.md)
