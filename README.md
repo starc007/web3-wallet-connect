@@ -2,9 +2,9 @@
   Web3 Wallet Connect
 </h1>
 
-Connect your Dapp to metamask, switch network, track network and account change in one line code.
+Easily Integrate web3 wallets in your Dapp
 
-<img src="https://avatars.githubusercontent.com/u/6078720?s=200&v=4" height="15" alt="sponsor github profile readme generator"/> See package [visit](https://www.npmjs.com/package/web3-wallet-connect)
+<img src="https://avatars.githubusercontent.com/u/6078720?s=200&v=4" height="15"/> See package [visit](https://www.npmjs.com/package/web3-wallet-connect)
 
 ## Installation
 
@@ -16,82 +16,83 @@ Install web3-wallet connect with npm
 
 ## Example Usage
 
-### Connect Wallet
+### Import Wallet
 
 ```jsx
-import { useConnectWallet } from "web3-wallet-connect";
-
-const { address, success, message } = await useConnectWallet();
+import { useMetamask, useWalletConnect } from "web3-wallet-connect";
 ```
 
-### Switch Network
-
-useSwitchNetwork(chainId) accepts a argument
+### Create wallet Object
 
 ```jsx
-import { useSwitchNetwork } from "web3-wallet-connect";
+// for Metamask object
+const connect = new useMetamask();
 
-# if you want to switch to polygon mainnet just pass chainId of polygon mainnet
+// for WalletConnect Object
+// pass rpc url object.
+const connect = new useWalletConnect({ rpc: rpcUrlObject });
+```
 
-const { success,message } = await useSwitchNetwork(137);
+### Connect to Wallet
+
+```jsx
+//for Metamask
+const wallet = await connect._connectMM();
+
+//for WalletConnect
+const wallet = await connect._connectWC();
 ```
 
 ### Network Change
 
-useNetworkChange(fn) accepts a callback function
-
 ```jsx
-import { useNetworkChange } from "web3-wallet-connect";
-
-# Tracks the network change
-
-const cb = (chainId)=> {
-    console.log(parseInt(chainId));
-}
-
-useNetworkChange(cb);
+// This fn accepts a callback function
+connect.onNetworkChange(cb);
+const cb = (chainId) => {
+  console.log(parseInt(chainId));
+};
 ```
 
 ### Account Change
 
-useAccountChange(fn) accepts a callback function
-
 ```jsx
-import { useAccountChange } from "web3-wallet-connect";
-
-# Tracks the Account change
-
-const cb = (walletAddress)=> {
-    console.log(walletAddress);
-}
-
-useAccountChange(cb);
+// This fn accepts a callback function
+connect.onAccountChange(cb);
+const cb = (walletAddress) => {
+  console.log(walletAddress);
+};
 ```
 
-## Supported Chains
+### Switch Network
 
-Following Chains are Supported for now:-
+```jsx
+//chainId should be integer eg 1,137,56,etc
+const _result = await _switchNetwork(chainId);
+```
 
-#### 1. Ethereum
+### Disconnect
 
-    Mainnet
-    Ropsten Testnet
-    Rinkbey Testnet
-    Goerli Testnet
+```jsx
+//FOR WALLETCONNECT
+await connect._disconnectWC();
+```
 
-#### 2. Polygon
+### Provider
 
-    Mainnet
-    Mumbai Testnet
+```jsx
+// for metamask
+const provider = connect.getProviderMM();
 
-#### 3. Binance
+//for WalletConnect
+const provider = connect.getProviderWC();
+```
 
-    Mainnet
-    Binance Testnet
+### Sign Message
 
-## Supported Wallet
-
-    Metamask
+```jsx
+// For signing the message]
+const result = await connect._signMessage(message);
+```
 
 ## 🍰 Contributing
 

@@ -1,12 +1,8 @@
 {
   "name": "web3-wallet-connect",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "A simple package to connect your wallet to dapp",
-  "main": "lib/index.js",
-  "scripts": {
-    "build": "tsc",
-    "prepare": "npm run build"
-  },
+  "main": "src/index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/starc007/web3-wallet-connect.git"
@@ -16,18 +12,13 @@
     "web3",
     "ethereum",
     "dapp",
-    "blockchain"
+    "blockchain",
+    "ethers"
   ],
   "author": "Saurabh Chauhan",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/starc007/web3-wallet-connect/issues"
   },
-  "homepage": "https://github.com/starc007/web3-wallet-connect#readme",
-  "devDependencies": {
-    "typescript": "^4.8.3"
-  },
-  "files": [
-    "lib/**/*"
-  ]
+  "homepage": "https://github.com/starc007/web3-wallet-connect#readme"
 }
