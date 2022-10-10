@@ -94,13 +94,20 @@ const provider = connect.getProviderWC();
 const result = await connect._signMessage(message);
 ```
 
+### Conncet Smart Contract
+
+```jsx
+const contract = connect._contract(CONTRACT_ADDRESS, ABI);
+```
+
 ## 🍰 Contributing
 
 Before Contributing please read [Contribute](Contribute.md)
 
 ## 💻 Built with
 
-- [Typescript](https://www.typescriptlang.org/)
+- Javascript
+- Ether.js
 
 ## 🙏 Support
 
