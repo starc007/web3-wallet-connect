@@ -119,8 +119,8 @@ export default class WalletConnect {
     }
   }
 
-  _contract(address, abi) {
+  _contract(address, abi, provider) {
     if (!this._web3Provider) return;
-    return new ethers.Contract(address, abi, this._web3Provider);
+    return new ethers.Contract(address, abi, provider);
   }
 }

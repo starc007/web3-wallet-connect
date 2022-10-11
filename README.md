@@ -97,7 +97,7 @@ const result = await connect._signMessage(message);
 ### Conncet Smart Contract
 
 ```jsx
-const contract = connect._contract(CONTRACT_ADDRESS, ABI);
+const contract = connect._contract(CONTRACT_ADDRESS, ABI, PROVIDER);
 ```
 
 ## 🍰 Contributing

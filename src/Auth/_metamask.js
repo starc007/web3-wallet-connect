@@ -116,8 +116,8 @@ export default class Metamask {
     }
   }
 
-  _contract(address, abi) {
+  _contract(address, abi, provider) {
     if (!this._provider) return;
-    return new ethers.Contract(address, abi, this._provider);
+    return new ethers.Contract(address, abi, provider);
   }
 }

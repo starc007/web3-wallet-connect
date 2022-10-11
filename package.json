@@ -1,6 +1,6 @@
 {
   "name": "web3-wallet-connect",
-  "version": "0.0.5",
+  "version": "2.0.0",
   "description": "A simple package to connect your wallet to dapp",
   "main": "src/index.js",
   "repository": {
