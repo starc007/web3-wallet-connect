@@ -67,7 +67,7 @@ const cb = (walletAddress) => {
 
 ```jsx
 //chainId should be integer eg 1,137,56,etc
-const _result = await _switchNetwork(chainId);
+const _result = await connect._switchNetwork(chainId);
 ```
 
 ### Disconnect

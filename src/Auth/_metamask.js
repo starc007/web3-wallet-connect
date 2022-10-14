@@ -14,8 +14,6 @@ export default class Metamask {
     } else {
       console.log("Metamask install karle BSDK");
       this._provider = null;
-      // open metamask install page
-      //   throw new Error("Metamask install karle BSDK");
     }
   }
 
@@ -117,7 +115,11 @@ export default class Metamask {
   }
 
   _contract(address, abi, provider) {
-    if (!this._provider) return;
+    if (!provider) return;
     return new ethers.Contract(address, abi, provider);
+  }
+
+  _ethers() {
+    return ethers;
   }
 }
