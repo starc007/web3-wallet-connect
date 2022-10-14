@@ -1,6 +1,6 @@
 {
   "name": "web3-wallet-connect",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "A simple package to connect your wallet to dapp",
   "main": "src/index.js",
   "repository": {
@@ -20,5 +20,9 @@
   "bugs": {
     "url": "https://github.com/starc007/web3-wallet-connect/issues"
   },
-  "homepage": "https://github.com/starc007/web3-wallet-connect#readme"
+  "homepage": "https://github.com/starc007/web3-wallet-connect#readme",
+  "dependencies": {
+    "@walletconnect/web3-provider": "^1.8.0",
+    "ethers": "^5.7.1"
+  }
 }
