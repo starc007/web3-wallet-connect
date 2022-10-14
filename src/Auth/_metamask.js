@@ -113,13 +113,4 @@ export default class Metamask {
       }
     }
   }
-
-  _contract(address, abi, provider) {
-    if (!provider) return;
-    return new ethers.Contract(address, abi, provider);
-  }
-
-  _ethers() {
-    return ethers;
-  }
 }

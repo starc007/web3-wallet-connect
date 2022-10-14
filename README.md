@@ -97,7 +97,14 @@ const result = await connect._signMessage(message);
 ### Conncet Smart Contract
 
 ```jsx
-const contract = connect._contract(CONTRACT_ADDRESS, ABI, PROVIDER);
+import { useContract } from "web3-wallet-connect";
+const contract = useContract(CONTRACT_ADDRESS, ABI, PROVIDER);
+```
+
+### import ethers
+
+```jsx
+import { ethers } from "web3-wallet-connect";
 ```
 
 ## 🍰 Contributing
