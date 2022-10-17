@@ -1,16 +1,18 @@
-import { ethers } from "ethers";
-import { ErrorHandler } from "../Error/ErrorHandler";
-const { ethereum } = window;
+const { ethers } = require("ethers");
+const { ErrorHandler } = require("../Error/ErrorHandler");
 
-export default class Metamask {
+class Metamask {
   constructor() {
     this._provider = null;
     this.#_initMM();
   }
 
   #_initMM() {
-    if (ethereum) {
+    const { ethereum, web3 } = window;
+    if (ethereum != undefined) {
       this._provider = new ethers.providers.Web3Provider(ethereum);
+    } else if (web3 != undefined) {
+      this._provider = new ethers.providers.Web3Provider(web3.currentProvider);
     } else {
       console.log("Metamask install karle BSDK");
       this._provider = null;
@@ -39,13 +41,15 @@ export default class Metamask {
   }
 
   onNetworkChange(callback) {
-    if (!ethereum) return;
+    const { ethereum } = window;
+    if (!this.ethereum) return;
     ethereum.on("chainChanged", (network) => {
       callback(network);
     });
   }
 
   onAccountChange(callback) {
+    const { ethereum } = window;
     if (!ethereum) return;
     ethereum.on("accountsChanged", (accounts) => {
       callback(accounts);
@@ -69,6 +73,7 @@ export default class Metamask {
   }
 
   removeListeners() {
+    const { ethereum } = window;
     if (ethereum && "removeAllListeners" in ethereum) {
       ethereum.removeAllListeners();
     }
@@ -114,3 +119,7 @@ export default class Metamask {
     }
   }
 }
+
+module.exports = {
+  useMetamask: Metamask,
+};

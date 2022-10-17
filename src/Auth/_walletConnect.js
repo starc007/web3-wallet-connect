@@ -1,8 +1,8 @@
-import WalletConnectProvider from "@walletconnect/web3-provider";
-import { ethers } from "ethers";
-import { ErrorHandler } from "../Error/ErrorHandler";
+const WalletConnectProvider = require("@walletconnect/web3-provider").default;
+const { ethers } = require("ethers");
+const { ErrorHandler } = require("../Error/ErrorHandler");
 
-export default class WalletConnect {
+class WalletConnect {
   constructor({ rpc }) {
     this.rpc = rpc;
     this._provider = null;
@@ -119,3 +119,7 @@ export default class WalletConnect {
     }
   }
 }
+
+module.exports = {
+  useWalletConnect: WalletConnect,
+};

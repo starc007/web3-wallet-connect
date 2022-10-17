@@ -1,15 +1,15 @@
-import WalletConnect from "./Auth/_walletConnect";
-import Metamask from "./Auth/_metamask";
-import { ethers } from "ethers";
+const { ethers } = require("ethers");
+const { useWalletConnect } = require("./Auth/_walletConnect");
+const { useMetamask } = require("./Auth/_metamask");
 
-const _connectContract = (contractAddress, abi, provider) => {
+function _connectContract(contractAddress, abi, provider) {
   const contract = new ethers.Contract(contractAddress, abi, provider);
   return contract;
-};
+}
 
-export {
-  WalletConnect as useWalletConnect,
-  Metamask as useMetamask,
-  ethers,
-  _connectContract as useContract,
+module.exports = {
+  useWalletConnect,
+  useMetamask,
+  ethers: ethers,
+  useContract: _connectContract,
 };
