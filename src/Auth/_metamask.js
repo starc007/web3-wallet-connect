@@ -1,5 +1,5 @@
-const { ethers } = require("ethers");
-const { ErrorHandler } = require("../Error/ErrorHandler");
+import { ethers } from "ethers";
+import { ErrorHandler } from "../Error/ErrorHandler";
 
 class Metamask {
   constructor() {
@@ -120,6 +120,4 @@ class Metamask {
   }
 }
 
-module.exports = {
-  useMetamask: Metamask,
-};
+export default Metamask;

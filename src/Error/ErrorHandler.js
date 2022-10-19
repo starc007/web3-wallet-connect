@@ -1,4 +1,4 @@
-const ErrorHandler = (error) => {
+export const ErrorHandler = (error) => {
   let msg = "";
   if (error.code === 4001) {
     msg = "Request rejected. Please accept to continue.";
@@ -15,8 +15,4 @@ const ErrorHandler = (error) => {
     msg = "error: " + error.message || "Something is wrong. Try reloading!";
   }
   return msg;
-};
-
-module.exports = {
-  ErrorHandler,
 };

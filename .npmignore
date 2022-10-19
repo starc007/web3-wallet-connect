@@ -1,0 +1,18 @@
+node_modules/
+src
+# Ignore files with sensitive environment variables
+.env
+.env.test
+# Next.js output
+.next/
+# Parcel cache
+.cache/
+# Ignore IDE configuration files
+.idea/ 
+.vscode/
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
