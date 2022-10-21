@@ -1,10 +1,10 @@
 <h1 align="center">
-  Web3 Wallet Connect v1.0.7
+  Web3 Wallet Connect v1.1.0
 </h1>
 
 Easily Integrate web3 wallets in your Dapp
 
-<img src="https://avatars.githubusercontent.com/u/6078720?s=200&v=4" height="15"/> See package [visit](https://www.npmjs.com/package/web3-wallet-connect)
+<img src="https://avatars.githubusercontent.com/u/6078720?s=200&v=4" height="15"/> See package [visit](https://www.npmjs.com/package/@saura3h/web3-connect)
 
 ## Installation
 
