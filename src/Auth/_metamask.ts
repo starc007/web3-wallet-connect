@@ -1,14 +1,15 @@
 import { ethers } from "ethers";
 import { ErrorHandler } from "../Error/ErrorHandler";
 
-class Metamask {
+export class Metamask {
+  _provider: any;
   constructor() {
     this._provider = null;
-    this.#_initMM();
+    this._initMM();
   }
 
-  #_initMM() {
-    const { ethereum, web3 } = window;
+  private _initMM() {
+    const { ethereum, web3 } = window as any;
     if (ethereum != undefined) {
       this._provider = new ethers.providers.Web3Provider(ethereum);
     } else if (web3 != undefined) {
@@ -21,7 +22,7 @@ class Metamask {
 
   async _connectMM() {
     try {
-      if (!this._provider) this.#_initMM();
+      if (!this._provider) this._initMM();
       const accounts = await this._provider.send("eth_requestAccounts", []);
       const network = await this._provider.getNetwork();
       return {
@@ -40,23 +41,23 @@ class Metamask {
     }
   }
 
-  onNetworkChange(callback) {
-    const { ethereum } = window;
-    if (!this.ethereum) return;
-    ethereum.on("chainChanged", (network) => {
-      callback(network);
+  onNetworkChange(callback: (chainId: string) => any) {
+    const { ethereum } = window as any;
+    if (!ethereum) return;
+    ethereum.on("chainChanged", (chainId: string) => {
+      callback(chainId);
     });
   }
 
-  onAccountChange(callback) {
-    const { ethereum } = window;
+  onAccountChange(callback: (accounts: string[]) => any) {
+    const { ethereum } = window as any;
     if (!ethereum) return;
-    ethereum.on("accountsChanged", (accounts) => {
+    ethereum.on("accountsChanged", (accounts: string[]) => {
       callback(accounts);
     });
   }
 
-  async _signMessage(message) {
+  async _signMessage(message: string) {
     try {
       const signer = this._provider.getSigner();
       await signer.signMessage(message);
@@ -73,7 +74,7 @@ class Metamask {
   }
 
   removeListeners() {
-    const { ethereum } = window;
+    const { ethereum } = window as any;
     if (ethereum && "removeAllListeners" in ethereum) {
       ethereum.removeAllListeners();
     }
@@ -83,7 +84,8 @@ class Metamask {
     return this._provider;
   }
 
-  async _switchNetwork(chainId) {
+  async _switchNetwork(chainId: number) {
+    if (isNaN(chainId)) return { success: false, message: "Invalid chainId" };
     try {
       await this._provider.send("wallet_switchEthereumChain", [
         {
@@ -94,7 +96,7 @@ class Metamask {
         message: "Network switched",
         success: true,
       };
-    } catch (error) {
+    } catch (error: any) {
       if (error.code === 4902) {
         return {
           message: ErrorHandler(error),
@@ -119,5 +121,3 @@ class Metamask {
     }
   }
 }
-
-export default Metamask;

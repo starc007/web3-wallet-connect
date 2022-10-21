@@ -11,7 +11,7 @@ Easily Integrate web3 wallets in your Dapp
 Install web3-wallet connect with npm
 
 ```bash
-  npm i web3-wallet-connect
+  npm i @saura3h/web3-connect
 ```
 
 ## Example Usage
@@ -19,7 +19,7 @@ Install web3-wallet connect with npm
 ### Import Wallet
 
 ```jsx
-import { useMetamask, useWalletConnect } from "web3-wallet-connect";
+import { useMetamask, useWalletConnect } from "@saura3h/web3-connect";
 ```
 
 ### Create wallet Object
@@ -97,14 +97,14 @@ const result = await connect._signMessage(message);
 ### Conncet Smart Contract
 
 ```jsx
-import { useContract } from "web3-wallet-connect";
+import { useContract } from "@saura3h/web3-connect";
 const contract = useContract(CONTRACT_ADDRESS, ABI, PROVIDER);
 ```
 
 ### import ethers
 
 ```jsx
-import { ethers } from "web3-wallet-connect";
+import { ethers } from "@saura3h/web3-connect";
 ```
 
 ## 🍰 Contributing

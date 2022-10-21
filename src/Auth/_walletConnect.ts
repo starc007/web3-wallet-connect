@@ -2,15 +2,18 @@ import WalletConnectProvider from "@walletconnect/web3-provider";
 import { ethers } from "ethers";
 import { ErrorHandler } from "../Error/ErrorHandler";
 
-class WalletConnect {
-  constructor({ rpc }) {
+export class WalletConnect {
+  rpc: any;
+  _provider: any;
+  _web3Provider: any;
+  constructor({ rpc }: any) {
     this.rpc = rpc;
     this._provider = null;
     this._web3Provider = null;
-    this.#_initWC();
+    this._initWC();
   }
 
-  #_initWC() {
+  private _initWC() {
     this._provider = new WalletConnectProvider({
       rpc: this.rpc, // Required
       qrcodeModalOptions: {
@@ -23,7 +26,7 @@ class WalletConnect {
   async _connectWC() {
     try {
       // Enable session (triggers QR Code modal)
-      if (!this._provider) this.#_initWC();
+      if (!this._provider) this._initWC();
       await this._provider.enable();
       const signer = this._web3Provider.getSigner();
       const address = await signer.getAddress();
@@ -49,19 +52,19 @@ class WalletConnect {
     this._provider = null;
   }
 
-  onNetworkChange(callback) {
-    this._provider.on("chainChanged", (network) => {
-      callback(network);
+  onNetworkChange(callback: (chainId: string) => any) {
+    this._provider.on("chainChanged", (chainId: string) => {
+      callback(chainId);
     });
   }
 
-  onAccountChange(callback) {
-    this._provider.on("accountsChanged", (accounts) => {
+  onAccountChange(callback: (accounts: string[]) => any) {
+    this._provider.on("accountsChanged", (accounts: string[]) => {
       callback(accounts);
     });
   }
 
-  async _signMessage(message) {
+  async _signMessage(message: string) {
     try {
       const signer = this._web3Provider.getSigner();
       await signer.signMessage(message);
@@ -81,7 +84,8 @@ class WalletConnect {
     return this._web3Provider;
   }
 
-  async _switchNetwork(chainId) {
+  async _switchNetwork(chainId: number) {
+    if (isNaN(chainId)) return { success: false, message: "Invalid chainId" };
     try {
       let id = `0x${chainId.toString(16)}`;
       await this._web3Provider.send("wallet_switchEthereumChain", [
@@ -89,12 +93,12 @@ class WalletConnect {
           chainId: id,
         },
       ]);
-      this.#_initWC();
+      this._initWC();
       return {
         message: "Network switched",
         success: true,
       };
-    } catch (error) {
+    } catch (error: any) {
       if (error.code === 4902) {
         return {
           message: ErrorHandler(error),
@@ -119,5 +123,3 @@ class WalletConnect {
     }
   }
 }
-
-export default WalletConnect;

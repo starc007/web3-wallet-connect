@@ -1,13 +1,18 @@
 {
-  "name": "web3-wallet-connect",
-  "version": "2.1.1",
+  "name": "@saura3h/web3-connect",
+  "version": "1.0.7",
   "description": "A simple package to connect your wallet to dapp",
-  "main": "dist/auth.js",
+  "main": "dist/bundle.umd.js",
+  "module": "dist/bundle.es5.js",
+  "typings": "dist/types/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack --mode=development",
-    "build:prod": "webpack --mode=production",
-    "prepublishOnly": "webpack --mode=production"
+    "prebuild": "rimraf dist",
+    "build": "tsc --module commonjs && rollup -c",
+    "build:watch": "rollup -c -w"
   },
   "repository": {
     "type": "git",
@@ -29,14 +34,23 @@
   "homepage": "https://github.com/starc007/web3-wallet-connect#readme",
   "dependencies": {
     "@walletconnect/web3-provider": "^1.8.0",
-    "ethers": "^5.7.1"
+    "ethers": "^5.7.2"
   },
   "devDependencies": {
-    "@babel/core": "^7.19.3",
-    "@babel/preset-env": "^7.19.4",
-    "babel-loader": "^8.2.5",
-    "node-polyfill-webpack-plugin": "^2.0.1",
-    "webpack": "^5.74.0",
-    "webpack-cli": "^4.10.0"
+    "@rollup/plugin-inject": "^5.0.1",
+    "@rollup/plugin-json": "^5.0.0",
+    "@typescript-eslint/eslint-plugin": "^5.40.1",
+    "eslint": "^8.25.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-config-standard-with-typescript": "^23.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-promise": "^6.1.1",
+    "prettier": "^2.7.1",
+    "rimraf": "^3.0.2",
+    "rollup": "^3.2.3",
+    "rollup-plugin-node-polyfills": "^0.2.1",
+    "rollup-plugin-typescript2": "^0.34.1",
+    "typescript": "^4.8.4"
   }
 }
