@@ -1,8 +1,9 @@
 import { ethers } from "ethers";
+import { Web3Provider } from "@ethersproject/providers";
 import { ErrorHandler } from "../Error/ErrorHandler";
 
 export class Metamask {
-  _provider: any;
+  _provider: Web3Provider | null;
   constructor() {
     this._provider = null;
     this._initMM();
@@ -22,14 +23,14 @@ export class Metamask {
 
   async _connectMM() {
     try {
-      if (!this._provider) this._initMM();
-      const accounts = await this._provider.send("eth_requestAccounts", []);
-      const network = await this._provider.getNetwork();
+      if (this._provider === null) this._initMM();
+      const accounts = await this._provider?.send("eth_requestAccounts", []);
+      const network = await this._provider?.getNetwork();
       return {
         message: "Wallet connected",
         success: true,
         address: accounts[0],
-        chainId: network.chainId,
+        chainId: network?.chainId,
       };
     } catch (err) {
       return {
@@ -59,16 +60,18 @@ export class Metamask {
 
   async _signMessage(message: string) {
     try {
-      const signer = this._provider.getSigner();
-      await signer.signMessage(message);
+      const signer = this._provider?.getSigner();
+      const signature = await signer?.signMessage(message);
       return {
         message: "Message signed",
         success: true,
+        signature: signature,
       };
     } catch (err) {
       return {
         message: ErrorHandler(err),
         success: false,
+        signature: null,
       };
     }
   }
@@ -86,8 +89,10 @@ export class Metamask {
 
   async _switchNetwork(chainId: number) {
     if (isNaN(chainId)) return { success: false, message: "Invalid chainId" };
+    if (this._provider === null)
+      return { success: false, message: "wallet not connected" };
     try {
-      await this._provider.send("wallet_switchEthereumChain", [
+      await this._provider?.send("wallet_switchEthereumChain", [
         {
           chainId: `0x${chainId.toString(16)}`,
         },

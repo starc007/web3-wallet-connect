@@ -1,11 +1,20 @@
-import { ethers as _ethers } from "ethers";
+import { ethers } from "ethers";
+import { Web3Provider } from "@ethersproject/providers";
 import { Metamask } from "./Auth/_metamask";
 import { WalletConnect } from "./Auth/_walletConnect";
-export function useContract(contractAddress: string, abi: any, provider: any) {
-  const contract = new _ethers.Contract(contractAddress, abi, provider);
+
+function useContract(
+  contractAddress: string,
+  abi: any,
+  provider: Web3Provider
+) {
+  const contract = new ethers.Contract(contractAddress, abi, provider);
   return contract;
 }
 
-export const useMetamask = Metamask;
-export const useWalletConnect = WalletConnect;
-export const ethers = _ethers;
+export {
+  Metamask as useMetamask,
+  WalletConnect as useWalletConnect,
+  ethers,
+  useContract,
+};

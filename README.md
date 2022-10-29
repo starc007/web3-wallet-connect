@@ -1,5 +1,5 @@
 <h1 align="center">
-  Web3 Wallet Connect v1.1.0
+  Web3 Wallet Connect v1.1.1
 </h1>
 
 Easily Integrate web3 wallets in your Dapp
@@ -10,8 +10,8 @@ Easily Integrate web3 wallets in your Dapp
 
 Install web3-wallet connect with npm
 
-```bash
-  npm i @saura3h/web3-connect
+```jsx
+npm i @saura3h/web3-connect
 ```
 
 ## Example Usage
@@ -77,6 +77,13 @@ const _result = await connect._switchNetwork(chainId);
 await connect._disconnectWC();
 ```
 
+### Remove Listeners
+
+```jsx
+//FOR Metmask
+await connect.removeListeners();
+```
+
 ### Provider
 
 ```jsx
@@ -113,7 +120,7 @@ Before Contributing please read [Contribute](Contribute.md)
 
 ## 💻 Built with
 
-- Javascript
+- Typescript
 - Ether.js
 
 ## 🙏 Support

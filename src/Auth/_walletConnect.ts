@@ -1,13 +1,18 @@
 import WalletConnectProvider from "@walletconnect/web3-provider";
+import { Web3Provider } from "@ethersproject/providers";
 import { ethers } from "ethers";
 import { ErrorHandler } from "../Error/ErrorHandler";
 
+interface rpcType {
+  [key: number]: string;
+}
+
 export class WalletConnect {
-  rpc: any;
+  rpc: rpcType;
   _provider: any;
-  _web3Provider: any;
-  constructor({ rpc }: any) {
-    this.rpc = rpc;
+  _web3Provider: Web3Provider | null;
+  constructor({ rpcObj }: { rpcObj: rpcType }) {
+    this.rpc = rpcObj;
     this._provider = null;
     this._web3Provider = null;
     this._initWC();
@@ -28,14 +33,14 @@ export class WalletConnect {
       // Enable session (triggers QR Code modal)
       if (!this._provider) this._initWC();
       await this._provider.enable();
-      const signer = this._web3Provider.getSigner();
-      const address = await signer.getAddress();
-      const chainId = await this._web3Provider.getNetwork();
+      const signer = this._web3Provider?.getSigner();
+      const address = await signer?.getAddress();
+      const chainId = await this._web3Provider?.getNetwork();
       return {
         message: "Wallet connected",
         success: true,
         address: address,
-        chainId: chainId.chainId,
+        chainId: chainId?.chainId,
       };
     } catch (err) {
       return {
@@ -66,16 +71,18 @@ export class WalletConnect {
 
   async _signMessage(message: string) {
     try {
-      const signer = this._web3Provider.getSigner();
-      await signer.signMessage(message);
+      const signer = this._web3Provider?.getSigner();
+      const signature = await signer?.signMessage(message);
       return {
         success: true,
         message: "Message signed",
+        signature: signature,
       };
     } catch (err) {
       return {
         success: false,
         message: ErrorHandler(err),
+        signature: null,
       };
     }
   }
@@ -86,9 +93,11 @@ export class WalletConnect {
 
   async _switchNetwork(chainId: number) {
     if (isNaN(chainId)) return { success: false, message: "Invalid chainId" };
+    if (this._web3Provider === null)
+      return { success: false, message: "wallet not connected" };
     try {
       let id = `0x${chainId.toString(16)}`;
-      await this._web3Provider.send("wallet_switchEthereumChain", [
+      await this._web3Provider?.send("wallet_switchEthereumChain", [
         {
           chainId: id,
         },
