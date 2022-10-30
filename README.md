@@ -123,7 +123,13 @@ Before Contributing please read [Contribute](Contribute.md)
 - Typescript
 - Ether.js
 
-## 🙏 Support
+## ❤️ Supporting the project
+
+A simple star to this project repo is enough to keep me motivated on this project for days. If you find your self very much excited with this project let me know with a tweet.
+
+Thanks!
+
+or
 
 <p align="left">
 <a href="https://www.paypal.me/saurra3h"><img src="https://ionicabizau.github.io/badges/paypal.svg" alt="sponsor github profile readme generator"/>
