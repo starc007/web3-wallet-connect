@@ -1,6 +1,6 @@
 {
   "name": "@saura3h/web3-connect",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "A simple package to connect your wallet to dapp",
   "main": "dist/bundle.umd.js",
   "module": "dist/bundle.es5.js",

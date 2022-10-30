@@ -11,8 +11,8 @@ export class WalletConnect {
   rpc: rpcType;
   _provider: any;
   _web3Provider: Web3Provider | null;
-  constructor({ rpcObj }: { rpcObj: rpcType }) {
-    this.rpc = rpcObj;
+  constructor({ rpc }: { rpc: rpcType }) {
+    this.rpc = rpc;
     this._provider = null;
     this._web3Provider = null;
     this._initWC();
