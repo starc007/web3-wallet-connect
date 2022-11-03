@@ -23,7 +23,18 @@ export class Metamask {
 
   async _connectMM() {
     try {
-      if (this._provider === null) this._initMM();
+      if (this._provider === null) {
+        const { ethereum } = window as any;
+        if (!ethereum) {
+          return {
+            success: false,
+            message: "Please install metamask",
+            address: null,
+            chainId: null,
+          };
+        }
+        this._initMM();
+      }
       const accounts = await this._provider?.send("eth_requestAccounts", []);
       const network = await this._provider?.getNetwork();
       return {

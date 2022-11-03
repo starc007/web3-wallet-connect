@@ -1,5 +1,5 @@
 <h1 align="center">
-  Web3 Wallet Connect v1.1.2
+  Web3 Wallet Connect v1.1.3
 </h1>
 
 Easily Integrate web3 wallets in your Dapp
