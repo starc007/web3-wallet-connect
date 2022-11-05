@@ -9,6 +9,7 @@
     <a href="https://github.com/starc007/web3-wallet-connect/issues">Report Bug</a>
     ·
     <a href="https://github.com/starc007/web3-wallet-connect/issues">Request Feature</a>
+    ·
     <a href="https://github.com/starc007/wallet-connect-boilerplate">Example</a>
   </p>
 
