@@ -1,10 +1,16 @@
 <h1 align="center">
   Web3 Wallet Connect v1.1.3
 </h1>
-
-Easily Integrate web3 wallets in your Dapp
-
-<img src="https://avatars.githubusercontent.com/u/6078720?s=200&v=4" height="15"/> See package [visit](https://www.npmjs.com/package/@saura3h/web3-connect)
+<p align="center">
+   Easily Integrate web3 wallets in your Dapp
+    <br />
+    <a href="https://www.npmjs.com/package/@saura3h/web3-connect">NPM Package</a>
+    ·
+    <a href="https://github.com/starc007/web3-wallet-connect/issues">Report Bug</a>
+    ·
+    <a href="https://github.com/starc007/web3-wallet-connect/issues">Request Feature</a>
+    <a href="https://github.com/starc007/wallet-connect-boilerplate">Example</a>
+  </p>
 
 ## Installation
 
@@ -114,6 +120,12 @@ const contract = useContract(CONTRACT_ADDRESS, ABI, PROVIDER);
 import { ethers } from "@saura3h/web3-connect";
 ```
 
+### Supported Wallets
+
+- Metamask
+- WalletConnect
+- More coming soon
+
 ## 🍰 Contributing
 
 Before Contributing please read [Contribute](Contribute.md)
@@ -134,15 +146,14 @@ or
 <p align="left">
 <a href="https://www.paypal.me/saurra3h"><img src="https://ionicabizau.github.io/badges/paypal.svg" alt="sponsor github profile readme generator"/>
 </a>
- <a href='https://ko-fi.com/saurra3h' target='_blank'><img height='23' width="100" src='https://cdn.ko-fi.com/cdn/kofi3.png?v=2' alt='Buy Coffee for rahuldkjain' />
+ <a href='https://ko-fi.com/saurra3h' target='_blank'><img height='23' width="100" src='https://cdn.ko-fi.com/cdn/kofi3.png?v=2' alt='Buy Coffee for Saurabh' />
+  </a>
+ <a href='https://www.buymeacoffee.com/saurra3h' target='_blank'><img height='23' width="100" src='https://cdn.buymeacoffee.com/buttons/default-orange.png' alt='Buy Coffee for Saurabh' />
   </a>
 </p>
 
-## License
+## ➤ License
 
-[MIT](https://choosealicense.com/licenses/mit/)
+Distributed under the [MIT](LICENSE.txt) License. See [LICENSE](LICENSE.txt) for more information.
 
-<hr>
-<p align="center">
-Developed with ❤️ in India 🇮🇳 
-</p>
+This readme was created with [readmi.xyz](https://readmi.xyz) ❤️
