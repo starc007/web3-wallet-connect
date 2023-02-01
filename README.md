@@ -26,7 +26,11 @@ npm i @saura3h/web3-connect
 ### Import Wallet
 
 ```jsx
-import { useMetamask, useWalletConnect } from "@saura3h/web3-connect";
+import {
+  useMetamask,
+  useWalletConnect,
+  useOkxWallet,
+} from "@saura3h/web3-connect";
 ```
 
 ### Create wallet Object
