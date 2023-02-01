@@ -38,6 +38,9 @@ const connect = new useMetamask();
 // for WalletConnect Object
 // pass rpc url object.
 const connect = new useWalletConnect({ rpc: rpcUrlObject });
+
+//// for OkxWallet object
+const connect = new useOkxWallet();
 ```
 
 ### Connect to Wallet
@@ -48,6 +51,9 @@ const wallet = await connect._connectMM();
 
 //for WalletConnect
 const wallet = await connect._connectWC();
+
+// for OkxWallet
+const wallet = await connect._connectOkx();
 ```
 
 ### Network Change
@@ -87,7 +93,7 @@ await connect._disconnectWC();
 ### Remove Listeners
 
 ```jsx
-//FOR Metmask
+//FOR Metmask and OkxWallet
 await connect.removeListeners();
 ```
 
@@ -99,6 +105,9 @@ const provider = connect.getProviderMM();
 
 //for WalletConnect
 const provider = connect.getProviderWC();
+
+//for OkxWallet
+const provider = connect.getProviderOkx();
 ```
 
 ### Sign Message
@@ -125,6 +134,7 @@ import { ethers } from "@saura3h/web3-connect";
 
 - Metamask
 - WalletConnect
+- OkxWallet
 - More coming soon
 
 ## 🍰 Contributing
