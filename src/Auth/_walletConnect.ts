@@ -7,7 +7,7 @@ interface rpcType {
   [key: number]: string;
 }
 
-export class WalletConnect {
+export default class WalletConnect {
   rpc: rpcType;
   _provider: any;
   _web3Provider: Web3Provider | null;

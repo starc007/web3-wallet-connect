@@ -1,8 +1,8 @@
 import { ethers } from "ethers";
 import { Web3Provider } from "@ethersproject/providers";
-import { Metamask } from "./Auth/_metamask";
-import { WalletConnect } from "./Auth/_walletConnect";
-import { OkxWallet } from "./Auth/_okxWallet";
+// import useMetamask from './Auth/_metamask';
+// import useWalletConnect from "./Auth/_walletConnect";
+// import { OkxWallet } from "./Auth/_okxWallet";
 
 function useContract(
   contractAddress: string,
@@ -13,10 +13,18 @@ function useContract(
   return contract;
 }
 
-export {
-  Metamask as useMetamask,
-  WalletConnect as useWalletConnect,
-  ethers,
-  useContract,
-  OkxWallet as useOkxWallet,
-};
+// export {
+//   Metamask as useMetamask,
+//   WalletConnect as useWalletConnect,
+//   ethers,
+//   useContract,
+//   OkxWallet as useOkxWallet,
+// };
+
+export { default as useMetamask } from "./Auth/_metamask";
+export { default as useWalletConnect } from "./Auth/_walletConnect";
+export { default as useOkxWallet } from "./Auth/_okxWallet";
+
+export { useContract };
+
+export { ethers };

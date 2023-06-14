@@ -2,7 +2,7 @@ import { ethers } from "ethers";
 import { Web3Provider } from "@ethersproject/providers";
 import { ErrorHandler } from "../Error/ErrorHandler";
 
-export class Metamask {
+export default class Metamask {
   _provider: Web3Provider | null;
   constructor() {
     this._provider = null;
