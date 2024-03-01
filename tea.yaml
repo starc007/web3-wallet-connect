@@ -1,0 +1,6 @@
+# constitution file
+---
+version: 1.0.0
+codeOwners:
+  - '0x04a5C9E96006654Fbd36953da1AfB22a33c2B770'
+quorum: 1
